@@ -1,0 +1,14 @@
+{
+"name": "MyTank",
+"version": "0.0.1",
+"private": true,
+"script": {
+	"start": "node app"
+	},
+"dependancies": {
+	"express": "*",
+	"jade": "*",
+	"async": "*",
+	"pi-gpio": "git://github.com/brentnycum/pi-gpio.git"
+	}
+}
