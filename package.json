@@ -1,14 +1,40 @@
 {
-"name": "MyTank",
-"version": "0.0.1",
-"private": true,
-"script": {
-	"start": "node app"
-	},
-"dependancies": {
-	"express": "*",
-	"jade": "*",
-	"async": "*",
-	"pi-gpio": "git://github.com/brentnycum/pi-gpio.git"
-	}
+  "name": "mytank",
+  "version": "0.0.1",
+  "private": true,
+  "script": {
+    "start": "node app"
+  },
+  "dependancies": {
+    "express"    : "4.7.2",
+    "jade"       : "1.11.0",
+    "async"      : "0.7.7",
+    "mongoose"   : "4.3.7",
+    "morgan"     : "1.6.1",
+    "body-parser": "1.14.2",
+    "method-override": "2.3.5",
+    "pi-gpio": "git://github.com/brentnycum/pi-gpio.git"
+  },
+  "main": "app.js",
+  "dependencies": {
+    "async": "^1.5.2",
+    "express": "^4.13.4",
+    "pi-gpio": "^0.0.8",
+    "rpi-gpio": "^0.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/veltarDK/MyFishTankController.git"
+  },
+  "author": "dzmitry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/veltarDK/MyFishTankController/issues"
+  },
+  "homepage": "https://github.com/veltarDK/MyFishTankController#readme",
+  "description": ""
 }
