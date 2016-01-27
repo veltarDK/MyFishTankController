@@ -22,7 +22,7 @@ app.get("/api/ping", function(req, res)
 function OpenP1(callback)
                         {
                                 // open PIN
-                                gpio.open(7, "output", WriteP1);
+                                gpio.open(config.DAY_LIGHT_PIN, "output", WriteP1);
                                 console.log('pin opened. On');
                         }
 
@@ -30,7 +30,7 @@ function WriteP1(callback)
                         {
 //gpio.setup(config.DAY_LIGHT_PIN, gpio.DIR_OUT);
                                 console.log('came to 2');
-                                gpio.write(7, 1);
+                                gpio.write(config.DAY_LIGHT_PIN, config.RELAY_ON);
                                 console.log('Written to pin. On');
                         }
 
@@ -47,7 +47,7 @@ function OpenP2(callback)
 
 function WriteP2(callback)
                         {
-                                gpio.write(config.DAY_LIGHT_PIN, 0);
+                                gpio.write(config.DAY_LIGHT_PIN, config.RELAY_OFF);
                                 console.log('Written to pin. Off');
                         }
 
@@ -55,7 +55,7 @@ function WriteP2(callback)
 
 function CloseP1(callback)
                         {
-                                gpio.close(7,  function(){
+                                gpio.close(config.DAY_LIGHT_PIN,  function(){
 				           console.log('pin closed.On');
 });
                         }
