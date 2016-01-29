@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="scotchTodo">
+<html ng-app="FishTank">
 <head>
     <!-- META -->
     <meta charset="utf-8">
@@ -39,25 +39,12 @@
 	
 <!--old page-->
 <!--<body>-->
-<pre>{{radioModel || 'null'}}</pre>
-<div class="btn-group" role="group" aria-label="...">
-	<label class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Day Light'" onclick="lightON()" uncheckable> Day Light</label>
-	<label class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Night'" onclick="lightOFF()" uncheckable> Night</label>
+<!--<pre>{{radioModel || 'null'}}</pre>-->
+<div class="btn-group" r>
+	<button class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Day Light'" ng-click="lightON();" uncheckable> Day Light</button>
+	<button class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Night'" ng-click="lightOFF();" uncheckable> Night</button>
 </div>
-<script>
-function post(url)
-{
-	var request = new XMLHttpRequest();
-	request.open('POST', url, true);
-	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-	request.send({});
-}
 
-function lightON() { post("/api/light/day/on");}
-
-function lightOFF() { post("/api/light/day/off"); }
-
-</script>
 
 </body>
 </html>

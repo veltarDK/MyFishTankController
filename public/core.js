@@ -1,16 +1,23 @@
-angular.module('ui.bootstrap.demo').controller('TabsDemoCtrl', function ($scope, $window) {
-  $scope.tabs = [
-    { title:'Dynamic Title 1', content:'Dynamic content 1' },
-    { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
-  ];
+var app = angular.module('FishTank', []);
 
-  $scope.alertMe = function() {
-    setTimeout(function() {
-      $window.alert('You\'ve selected the alert tab!');
-    });
-  };
+app.controller("mainController", function ($scope) {
 
-  $scope.model = {
-    name: 'Tabs'
+
+
+ function post(url)
+ {
+ 	var request = new XMLHttpRequest();
+ 	request.open('POST', url, true);
+ 	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+ 	request.send({});
+ }
+
+  $scope.lightON = function() {
+  post("/api/light/day/on");
   };
+  
+  $scope.lightOFF = function() {
+  post("/api/light/day/off");
+  };
+  
 });
