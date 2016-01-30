@@ -15,7 +15,7 @@
     "method-override": "2.3.5",
     "pi-gpio": "git://github.com/brentnycum/pi-gpio.git"
   },
-  "main": "app.js",
+  "main": "server.js",
   "dependencies": {
     "async": "^1.5.2",
     "express": "^4.13.4",
