@@ -5,12 +5,12 @@
 # description: Node.js /home/nodejs/sample/app.js
 #
 
-. /etc/rc.d/init.d/functions
+#. /etc/rc.d/init.d/functions
 
 USER="pi"
 
 DAEMON="/home/nodejs/.nvm/v0.4.10/bin/node"
-ROOT_DIR="/home/pi/MyAquaAppNodeJSproject_relay/MyAquaApp/"
+ROOT_DIR="/home/pi/NodeJSproject_relay/MyAquaApp/"
 
 SERVER="$ROOT_DIR/server.js"
 LOG_FILE="$ROOT_DIR/server.js.log"
