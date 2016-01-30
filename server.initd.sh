@@ -15,47 +15,34 @@ ROOT_DIR="/home/pi/MyAquaAppNodeJSproject_relay/MyAquaApp/"
 SERVER="$ROOT_DIR/server.js"
 LOG_FILE="$ROOT_DIR/server.js.log"
 
-LOCK_FILE="/var/lock/subsys/node-server"
 
-do_start()
-{
-        if [ ! -f "$LOCK_FILE" ] ; then
-                echo -n $"Starting $SERVER: "
-                export HOST=192.168.1.13
-                export PORT=3000
-                runuser -l "$USER" -c "$DAEMON $SERVER >> $LOG_FILE &" && echo_success || echo_failure
-                RETVAL=$?
-                echo
-                [ $RETVAL -eq 0 ] && touch $LOCK_FILE
-        else
-                echo "$SERVER is locked."
-                RETVAL=1
-        fi
-}
-do_stop()
-{
-        echo -n $"Stopping $SERVER: "
-        pid=`ps -aefw | grep "$DAEMON $SERVER" | grep -v " grep " | awk '{print $2}'`
-        kill -9 $pid > /dev/null 2>&1 && echo_success || echo_failure
-        RETVAL=$?
-        echo
-        [ $RETVAL -eq 0 ] && rm -f $LOCK_FILE
-}
+
+### BEGIN INIT INFO
+# Provides:             telasocial
+# Required-Start:
+# Required-Stop:
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    TelaSocial Node App
+### END INIT INFO
+
+export PATH=$PATH:/usr/local/bin/
+#export NODE_PATH=$NODE_PATH:/opt/node/lib/node_modules
+#export HOME=/root 
+export PORT=3000
+export IP=192.168.1.13
 
 case "$1" in
-        start)
-                do_start
-                ;;
-        stop)
-                do_stop
-                ;;
-        restart)
-                do_stop
-                do_start
-                ;;
-        *)
-                echo "Usage: $0 {start|stop|restart}"
-                RETVAL=1
-esac
+  start)
+    forever  --sourceDir=$ROOT_DIR server.js -l $LOG_FILE 
+    ;;
+  stop)
+    exec forever stopall
+    ;;
+  *)
 
-exit $RETVAL
+  echo "Usage: /etc/init.d/nodeup {start|stop}"
+  exit 1
+  ;;
+esac
+exit 0
