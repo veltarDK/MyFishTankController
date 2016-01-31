@@ -1,50 +1,62 @@
 <!DOCTYPE html>
 
-<!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="FishTank">
+<!-- define angular app -->
+<html ng-app="FishTankApp">
+
 <head>
-    <!-- META -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+  <!-- SCROLLS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
 
-    <title>Fish Tank Controller</title>
-
-
-    <!-- SCROLLS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-    <style>
-        html                    { overflow-y:scroll; }
-        body                    { padding-top:50px; }
-        #todo-list              { margin-bottom:30px; }
-    </style>
-
-    <!-- SPELLS -->
-    <!--do no load jquery-->
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
-    <script src="core.js"></script>
-
+  <!-- SPELLS -->
+  <!--<script src="bower_components/angular/angular.js"></script>-->
+  <!--<script src="bower_components/angular-route/angular-route.js"></script>-->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
+  <script src="core.js"></script>
 </head>
-<!-- SET THE CONTROLLER -->
+
+<!-- define angular controller -->
 <body ng-controller="mainController">
-   <!--insertion of navbar-->
-<ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a showtab=""  href="#">Home</a></li>
-  <li role="presentation"><a showtab="" href="#">Controls</a></li>
-  <li role="presentation"><a showtab=""  href="#">Statistics</a></li>
-  <li role="presentation"><a showtab=""  href="#">Setings</a></li>
-</ul>
 
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#home">FishTank Controller</a>
+      </div>
 
-	
-<!--old page-->
-<!--<body>-->
-<!--<pre>{{radioModel || 'null'}}</pre>-->
-<div class="btn-group" r>
-	<button class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Day Light'" ng-click="lightON();" uncheckable> Day Light</button>
-	<button class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Night'" ng-click="lightOFF();" uncheckable> Night</button>
-</div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#controls"><i class="fa fa-controls"></i> Controls</a></li>
+        <li><a href="#setings"><i class="fa fa-setings"></i> Setings</a></li>
+        <li><a href="#about"><i class="fa fa-about"></i> About</a></li>
+      </ul>
+    </div>
+  </nav>
 
-
+  <div id="main">
+  
+    <!-- angular templating -->
+		<!-- this is where content will be injected -->
+    <div ng-view></div>
+    
+  </div>
+  
+  <!--<footer class="text-center">-->
+  <!--  <p>View the tutorial on <a href="http://cch.io/tutorials/javascript/single-page-apps-with-angularjs-routing-and-templating">Scotch.io</a></p>-->
+  
+  <!--  <p>View a tutorial on <a href="http://scotch.io/tutorials/javascript/animating-angularjs-apps-ngview">Animating Your Angular Single Page App</a></p>-->
+  <!--</footer>-->
+  
 </body>
+
 </html>
+
+        <!--old page-->
+        <!--<body>-->
+        <!--<pre>{{radioModel || 'null'}}</pre>-->
+        <!--<div class="btn-group" r>-->
+        <!--	<button class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Day Light'" ng-click="lightON();" uncheckable> Day Light</button>-->
+        <!--	<button class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Night'" ng-click="lightOFF();" uncheckable> Night</button>-->
+        <!--</div>-->
+
