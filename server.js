@@ -24,20 +24,23 @@ var sensor = require('ds18x20');                    // temperature sensor librar
     // listen (start app with node server.js) ======================================
 
 // 
-sensor.isDriverLoaded(function (err, isLoaded) {
-    console.log("Temperarure sensor library loaded: "+  isLoaded);
-});
-var listOfDeviceIds = sensor.list();
-console.log("Temp sensors: " + listOfDeviceIds);
+var isLoaded = sensor.isDriverLoaded();
+console.log("Temperarure sensor library loaded: "+  isLoaded);
 
+if (isLoaded)
+{
+    var listOfDeviceIds = sensor.list();
+    console.log("Temp sensors: " + listOfDeviceIds);
+    sensor.getAll(function (err, tempObj) {
+    console.log(tempObj);
+});
+//28-000002f793b9': 24.6, '28-000002f79457': 21.3 
+}
 // 
 app.listen(process.env.PORT, process.env.IP, function () {
   console.log('Example server listening on port ' + process.env.PORT  + ' IP ' + process.env.IP);
 });
 
-sensor.getAll(function (err, tempObj) {
-    console.log(tempObj);
-});
 
 
 
@@ -111,4 +114,34 @@ app.post("/api/light/day/off", function(req, res)
                         }
                 );
 
+});
+
+
+// 
+// 
+// Temp section
+// 
+function ReadT2(res, callback)
+                        {
+                var temp = 666;
+                console.log("Requested temp value is:" + temp);
+                res.send(temp);
+                // res = temp;
+}
+
+app.post("/api/sensor/temp/tank2", function(req, res) {
+                    var temp = 666;
+                    var t_probe = 1;
+                console.log("Requested temp value is:" + temp);
+                res.status = 405;
+//                res.
+                res.send(t_probe + ' ' + temp);
+                
+        // async.series(
+        //         [
+        //          ReadT2()
+        //         ], function (err, results) {
+        //                 console.log(err + " All functions finished.");
+        //                 }
+        //         );
 });

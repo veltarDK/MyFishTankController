@@ -2,4 +2,9 @@
 	<h1>Home Page</h1>
 	
 	<p>{{ message }}</p>
+	<p>"errcode = " + {{ errcode }}</p>
+	<p>"temp = " +{{ t1 }}</p>
 </div>
+<label for="MyField">{{ myFieldLabel }}None</label>
+
+<button class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Day Light'" ng-click="getTemp();" uncheckable> Get Temp</button>

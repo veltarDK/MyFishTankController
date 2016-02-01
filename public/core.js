@@ -39,6 +39,29 @@ app.config(function($routeProvider) {
 app.controller('mainController', function($scope) {
 	// create a message to display in our view
 	$scope.message = 'Everyone come and see how good I look!';
+	var request = new XMLHttpRequest();
+	post("/api/sensor/temp/tank2");
+	function post(url) {
+		request.open('POST', url, true);
+		request.addEventListener("load", transferComplete);
+		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+		// request.timeout=200
+		request.send({});
+		$scope.errcode = request.status;
+		$scope.t1 = request.responseText;
+
+	}
+
+	function transferComplete(event) {
+		$scope.t1 = request.responseText;
+		$scope.myFieldLabel = request.responseText;
+
+	}
+	$scope.getTemp = function() {
+		post("/api/sensor/temp/tank2");
+
+	};
+
 });
 
 app.controller('aboutController', function($scope) {
