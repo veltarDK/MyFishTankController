@@ -7,6 +7,7 @@ var methodOverride = require('method-override');    // simulate DELETE and PUT (
 var async = require('async');
 var gpio = require('pi-gpio');
 var config = require('./config');
+var sensor = require('ds18x20');                    // temperature sensor library
 
 
 // configuration =================
@@ -22,10 +23,23 @@ var config = require('./config');
 
     // listen (start app with node server.js) ======================================
 
+// 
+sensor.isDriverLoaded(function (err, isLoaded) {
+    console.log("Temperarure sensor library loaded: "+  isLoaded);
+});
+var listOfDeviceIds = sensor.list();
+console.log("Temp sensors: " + listOfDeviceIds);
 
+// 
 app.listen(process.env.PORT, process.env.IP, function () {
   console.log('Example server listening on port ' + process.env.PORT  + ' IP ' + process.env.IP);
 });
+
+sensor.getAll(function (err, tempObj) {
+    console.log(tempObj);
+});
+
+
 
 //turnONp1
 function OpenP1(callback)

@@ -18,6 +18,7 @@
   "main": "server.js",
   "dependencies": {
     "async": "^1.5.2",
+    "ds18x20": "^0.2.0",
     "express": "^4.13.4",
     "pi-gpio": "0.0.8",
     "rpi-gpio": "^0.7.0"

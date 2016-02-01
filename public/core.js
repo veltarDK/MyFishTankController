@@ -1,4 +1,4 @@
-var app = angular.module('FishTankApp', ['ngRoute']);
+var app = angular.module('FishTankApp', ['ngRoute', 'ui.bootstrap']);
 
 
 // configure our routes
