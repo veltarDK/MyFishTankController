@@ -40,7 +40,7 @@ app.controller('mainController', function($scope) {
 	// create a message to display in our view
 	$scope.message = 'Everyone come and see how good I look!';
 	var request = new XMLHttpRequest();
-	post("/api/sensor/temp/tank2");
+
 	function post(url) {
 		request.open('POST', url, true);
 		request.addEventListener("load", transferComplete);
@@ -56,6 +56,14 @@ app.controller('mainController', function($scope) {
 		$scope.t1 = request.responseText;
 		$scope.myFieldLabel = request.responseText;
 
+  var g = new JustGage({
+    id: "gauge",
+    value: 67,
+    min: 0,
+    max: 100,
+    title: "Visitors"
+  });
+  
 	}
 	$scope.getTemp = function() {
 		post("/api/sensor/temp/tank2");
