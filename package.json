@@ -21,6 +21,8 @@
     "ds18x20": "^0.2.0",
     "express": "^4.13.4",
     "justgage": "^1.2.2",
+    "moment": "^2.11.1",
+    "node-schedule": "^1.0.0",
     "pi-gpio": "0.0.8",
     "rpi-gpio": "^0.7.0"
   },
