@@ -5,7 +5,7 @@ var morgan = require('morgan'); // log requests to the console (express4)
 var bodyParser = require('body-parser'); // pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 var async = require('async');
-// var gpio = require('pi-gpio');
+ var gpio = require('pi-gpio');
 var config = require('./config');
 var sensor = require('ds18x20'); // temperature sensor library
 var schedule = require('node-schedule'); // cron scheduller
@@ -110,7 +110,9 @@ function Initialize() {
      db.once('open', function() {
        // we're connected!
        console.log("We are connected");
-        ReadTemp_dump();
+        ReadTemp_dump(555);
+        //
+
      });
 
 console.log("Initialization - Done.")
@@ -225,16 +227,28 @@ app.post("/api/sensor/temp/tank2", function(req, res) {
     //         );
 });
 
-function ReadTemp_dump() {
+function ReadTemp_dump(mes_temp) {
     
     var tempModel = mongoose.model('Temp1', Temp);
 
     var temp1 = new tempModel();
-    temp1.value = 123;
+    temp1.value = mes_temp;
     temp1.time = moment().format();
     temp1.save(function(err) {
   if (err) throw err;
 
   console.log('Temp saved successfully!');
+  
+  
+  //
+  //
+  //
+          // get all the users
+    tempModel.find({}, function(err, temps) {
+  if (err) throw err;
+
+  // object of all the users
+  console.log(temps);
+});
 });
 }
