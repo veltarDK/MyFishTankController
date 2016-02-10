@@ -232,13 +232,16 @@ function ReadTemp_dump(mes_temp) {
     var tempModel = mongoose.model('Temp1', Temp);
 
     var temp1 = new tempModel();
+    sensor.get('28-000002f793b9', function (err, mes_temp) {
+    console.log(mes_temp);
+    
     temp1.value = mes_temp;
     temp1.time = moment().format();
     temp1.save(function(err) {
   if (err) throw err;
 
   console.log('Temp saved successfully!');
-  
+    });
   
   //
   //
