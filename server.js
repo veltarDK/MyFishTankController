@@ -5,12 +5,13 @@ var morgan = require('morgan'); // log requests to the console (express4)
 var bodyParser = require('body-parser'); // pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 var async = require('async');
- var gpio = require('pi-gpio');
+// var gpio = require('pi-gpio');
 var config = require('./config');
 var sensor = require('ds18x20'); // temperature sensor library
 var schedule = require('node-schedule'); // cron scheduller
 var moment = require('moment');
-
+// Retrieve
+// var MongoClient = require('mongodb').MongoClient;
 
 
 // configuration =================
@@ -43,14 +44,17 @@ function Initialize() {
     //get current time
     //
     console.log("current hour is " + moment().format("HH"));
-    if (moment().hour > config.SUNRISE_HOUR && moment().hour < config.SUNSET_HOUR) {
+
+    var c_hour = moment().format("HH");
+
+    if (c_hour > config.SUNRISE_HOUR && c_hour < config.SUNSET_HOUR) {
         //
         console.log("determine day. " + moment().format("HH:mm"));
-        OpenP1();
+        // OpenP1();
     }
     else {
         console.log("determine night. " + moment().format("HH:mm"));
-        OpenP2();
+        // OpenP2();
     }
     //
     //enqueue timers
@@ -61,7 +65,7 @@ function Initialize() {
     morning_rule.hour = config.SUNRISE_HOUR;
     morning_rule.minute = config.SUNRISE_MINUTES;
     schedule.scheduleJob(morning_rule, function() {
-        OpenP1();
+        // OpenP1();
         console.log('Sunrise! ;)');
     });
 
@@ -72,7 +76,7 @@ function Initialize() {
     evening_rule.hour = config.SUNRISE_HOUR;
     evening_rule.minute = config.SUNRISE_MINUTES;
     schedule.scheduleJob(evening_rule, function() {
-        OpenP2();
+        // OpenP2();
         console.log('Sunset! ;)');
     });
 
@@ -95,99 +99,142 @@ function Initialize() {
         //
         //
     }
+
+    // Retrieve
+    // var MongoClient = require('mongodb').MongoClient;
+    mongoose.connect(process.env.IP);
+
+
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+     db.once('open', function() {
+       // we're connected!
+       console.log("We are connected");
+        ReadTemp_dump();
+     });
+
+console.log("Initialization - Done.")
+
+
+
+
 }
-    //turnONp1
-    function OpenP1(callback) {
-        // open PIN
-        gpio.open(config.DAY_LIGHT_PIN, "output", WriteP1);
-        console.log('pin opened. On');
-    }
 
-    function WriteP1(callback) {
-        //gpio.setup(config.DAY_LIGHT_PIN, gpio.DIR_OUT);
-        console.log('came to 2');
-        gpio.write(config.DAY_LIGHT_PIN, config.RELAY_ON);
-        console.log('Written to pin. On');
-    }
+ var Schema = mongoose.Schema;
+
+ var Temp = new Schema({
+   value: Number,
+   time: Date
+ });
 
 
 
+//turnONp1
+function OpenP1(callback) {
+    // open PIN
+    gpio.open(config.DAY_LIGHT_PIN, "output", WriteP1);
+    console.log('pin opened. On');
+}
 
-    //turnOFFp1
-    function OpenP2(callback) {
-        // open PIN
-        gpio.open(config.DAY_LIGHT_PIN, "output", WriteP2);
-        console.log('pin opened. Off');
-    }
-
-    function WriteP2(callback) {
-        gpio.write(config.DAY_LIGHT_PIN, config.RELAY_OFF);
-        console.log('Written to pin. Off');
-    }
-
-
-
-    function CloseP1(callback) {
-        gpio.close(config.DAY_LIGHT_PIN, function() {
-            console.log('pin closed.On');
-        });
-    }
+function WriteP1(callback) {
+    //gpio.setup(config.DAY_LIGHT_PIN, gpio.DIR_OUT);
+    console.log('came to 2');
+    gpio.write(config.DAY_LIGHT_PIN, config.RELAY_ON);
+    console.log('Written to pin. On');
+}
 
 
 
 
+//turnOFFp1
+function OpenP2(callback) {
+    // open PIN
+    gpio.open(config.DAY_LIGHT_PIN, "output", WriteP2);
+    console.log('pin opened. Off');
+}
+
+function WriteP2(callback) {
+    gpio.write(config.DAY_LIGHT_PIN, config.RELAY_OFF);
+    console.log('Written to pin. Off');
+}
 
 
 
-    app.post("/api/light/day/on", function(req, res) {
-        async.series(
-            [
-                OpenP1
-            ],
-            function(err, results) {
-                console.log(err + " All functions finished.");
-            }
-        );
+function CloseP1(callback) {
+    gpio.close(config.DAY_LIGHT_PIN, function() {
+        console.log('pin closed.On');
     });
+}
 
 
-    app.post("/api/light/day/off", function(req, res) {
-        async.series(
-            [
-                OpenP2
-            ],
-            function(err, results) {
-                console.log(err + " All functions finished.");
-            }
-        );
-
-    });
 
 
-    // 
-    // 
-    // Temp section
-    // 
-    function ReadT2(res, callback) {
-        var temp = 666;
-        console.log("Requested temp value is:" + temp);
-        res.send(temp);
-        // res = temp;
-    }
 
-    app.post("/api/sensor/temp/tank2", function(req, res) {
-        var temp = 666;
-        var t_probe = 1;
-        console.log("Requested temp value is:" + temp);
-        res.status = 405;
-        //                res.
-        res.send(t_probe + ' ' + temp);
 
-        // async.series(
-        //         [
-        //          ReadT2()
-        //         ], function (err, results) {
-        //                 console.log(err + " All functions finished.");
-        //                 }
-        //         );
-    });
+
+app.post("/api/light/day/on", function(req, res) {
+    async.series(
+        [
+            OpenP1
+        ],
+        function(err, results) {
+            console.log(err + " All functions finished.");
+        }
+    );
+});
+
+
+app.post("/api/light/day/off", function(req, res) {
+    async.series(
+        [
+            OpenP2
+        ],
+        function(err, results) {
+            console.log(err + " All functions finished.");
+        }
+    );
+
+});
+
+
+// 
+// 
+// Temp section
+// 
+function ReadT2(res, callback) {
+    var temp = 666;
+    console.log("Requested temp value is:" + temp);
+    res.send(temp);
+    // res = temp;
+}
+
+app.post("/api/sensor/temp/tank2", function(req, res) {
+    var temp = 666;
+    var t_probe = 1;
+    console.log("Requested temp value is:" + temp);
+    res.status = 405;
+    //                res.
+    res.send(t_probe + ' ' + temp);
+
+    // async.series(
+    //         [
+    //          ReadT2()
+    //         ], function (err, results) {
+    //                 console.log(err + " All functions finished.");
+    //                 }
+    //         );
+});
+
+function ReadTemp_dump() {
+    
+    var tempModel = mongoose.model('Temp1', Temp);
+
+    var temp1 = new tempModel();
+    temp1.value = 123;
+    temp1.time = moment().format();
+    temp1.save(function(err) {
+  if (err) throw err;
+
+  console.log('Temp saved successfully!');
+});
+}
