@@ -50,11 +50,11 @@ function Initialize() {
     if (c_hour > config.SUNRISE_HOUR && c_hour < config.SUNSET_HOUR) {
         //
         console.log("determine day. " + moment().format("HH:mm"));
-        // OpenP1();
+         OpenP1();
     }
     else {
         console.log("determine night. " + moment().format("HH:mm"));
-        // OpenP2();
+         OpenP2();
     }
     //
     //enqueue timers
@@ -65,7 +65,7 @@ function Initialize() {
     morning_rule.hour = config.SUNRISE_HOUR;
     morning_rule.minute = config.SUNRISE_MINUTES;
     schedule.scheduleJob(morning_rule, function() {
-        // OpenP1();
+         OpenP1();
         console.log('Sunrise! ;)');
     });
 
@@ -76,11 +76,21 @@ function Initialize() {
     evening_rule.hour = config.SUNRISE_HOUR;
     evening_rule.minute = config.SUNRISE_MINUTES;
     schedule.scheduleJob(evening_rule, function() {
-        // OpenP2();
+         OpenP2();
         console.log('Sunset! ;)');
     });
 
 
+//
+    //15minutes temp rule
+    var temp_15_rule = new schedule.RecurrenceRule();
+    temp_15_rule.dayOfWeek = [0, new schedule.Range(1, 6)];
+    temp_15_rule.minute = 15;
+    schedule.scheduleJob(temp_15_rule, function() {
+         ReadTemp_dump2();
+         ReadTemp_dump();
+        console.log('Sunset! ;)');
+    });
     //
     //
     //check modules
@@ -227,12 +237,44 @@ app.post("/api/sensor/temp/tank2", function(req, res) {
     //         );
 });
 
-function ReadTemp_dump(mes_temp) {
+function ReadTemp_dump() {
     
     var tempModel = mongoose.model('Temp1', Temp);
 
     var temp1 = new tempModel();
+    var mes_temp;
     sensor.get('28-000002f793b9', function (err, mes_temp) {
+    console.log(mes_temp);
+    
+    temp1.value = mes_temp;
+    temp1.time = moment().format();
+    temp1.save(function(err) {
+  if (err) throw err;
+
+  console.log('Temp saved successfully!');
+    });
+  
+  //
+  //
+  //
+          // get all the users
+    tempModel.find({}, function(err, temps) {
+  if (err) throw err;
+
+  // object of all the users
+  console.log(temps);
+});
+});
+}
+
+
+function ReadTemp_dump2() {
+    
+    var tempModel = mongoose.model('Temp2', Temp);
+
+    var temp1 = new tempModel();
+    var mes_temp;
+    sensor.get('28-000002f79457', function (err, mes_temp) {
     console.log(mes_temp);
     
     temp1.value = mes_temp;
