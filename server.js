@@ -84,12 +84,12 @@ function Initialize() {
 //
     //15minutes temp rule
     var temp_15_rule = new schedule.RecurrenceRule();
-    temp_15_rule.dayOfWeek = [0, new schedule.Range(1, 6)];
+   // temp_15_rule.dayOfWeek = [0, new schedule.Range(1, 6)];
     temp_15_rule.minute = 15;
     schedule.scheduleJob(temp_15_rule, function() {
          ReadTemp_dump2();
          ReadTemp_dump();
-        console.log('Sunset! ;)');
+        console.log('getSave temp! ;)');
     });
     //
     //
