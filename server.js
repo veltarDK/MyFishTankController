@@ -282,7 +282,7 @@ function ReadTemp_dump2() {
     temp1.save(function(err) {
   if (err) throw err;
 
-  console.log('Temp saved successfully!');
+  console.log('Temp 2 saved successfully!');
     });
   
   //
