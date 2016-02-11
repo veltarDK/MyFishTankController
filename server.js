@@ -85,7 +85,7 @@ function Initialize() {
     //15minutes temp rule
     var temp_15_rule = new schedule.RecurrenceRule();
    // temp_15_rule.dayOfWeek = [0, new schedule.Range(1, 6)];
-    temp_15_rule.minute = 15;
+    temp_15_rule.minute = new schedule.Range(0, 59, 15);
     schedule.scheduleJob(temp_15_rule, function() {
          ReadTemp_dump2();
          ReadTemp_dump();
