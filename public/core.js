@@ -1,6 +1,8 @@
-var app = angular.module('FishTankApp', ['ngRoute', 'ui.bootstrap']);
+var app = angular.module('FishTankApp', ['ngRoute', 'ui.bootstrap','angularCharts']);
 
 
+
+// var chartjs = require('chart.js');
 // configure our routes
 app.config(function($routeProvider) {
 	$routeProvider
@@ -32,6 +34,12 @@ app.config(function($routeProvider) {
 	.when('/controls', {
 		templateUrl: 'pages/controls.html',
 		controller: 'controlsController'
+	})
+	
+	// route for the statistics page
+	.when('/statistics', {
+		templateUrl: 'pages/statistics.html',
+		controller: 'statisticsController'
 	});
 });
 
@@ -56,19 +64,32 @@ app.controller('mainController', function($scope) {
 		$scope.t1 = request.responseText;
 		$scope.myFieldLabel = request.responseText;
 
-  var g = new JustGage({
-    id: "gauge",
-    value: 67,
-    min: 0,
-    max: 100,
-    title: "Visitors"
-  });
+  // var g = new JustGage({
+  //   id: "gauge",
+  //   value: 67,
+  //   min: 0,
+  //   max: 100,
+  //   title: "Visitors"
+  // });
   
 	}
 	$scope.getTemp = function() {
 		post("/api/sensor/temp/tank2");
 
 	};
+	
+
+
+  //$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+  //$scope.series = ['Series A', 'Series B'];
+  //$scope.data = [
+  //  [65, 59, 80, 81, 56, 55, 40],
+  //  [28, 48, 40, 19, 86, 27, 90]
+  //];
+  //$scope.onClick = function (points, evt) {
+  //  console.log(points, evt);
+  //};
+  
 
 });
 
@@ -100,7 +121,20 @@ app.controller('setingsController', function($scope) {
 	$scope.message = 'setings bla bla .just a demo.';
 });
 
-
+app.controller('statisticsController', function($scope) {
+	$scope.message = 'Statistics!.';
+	
+	//
+	$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+  $scope.series = ['Series A', 'Series B'];
+  $scope.data = [
+    [65, 59, 80, 81, 56, 55, 40],
+    [28, 48, 40, 19, 86, 27, 90]
+  ];
+  $scope.onClick = function (points, evt) {
+    console.log(points, evt);
+  };
+});
 // app.controller("mainController", function ($scope) {
 
 // // Tabs

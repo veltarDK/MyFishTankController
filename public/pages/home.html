@@ -4,8 +4,14 @@
 	<p>{{ message }}</p>
 	<p>"errcode = " + {{ errcode }}</p>
 	<p>"temp = " +{{ t1 }}</p>
+	<canvas id="line" class="chart chart-line" chart-data="data"
+  chart-labels="labels" chart-legend="true" chart-series="series"
+  chart-click="onClick" >
+</canvas> 
+
 </div>
 <label for="MyField">{{ myFieldLabel }}None</label>
 
 <button class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Day Light'" ng-click="getTemp();" uncheckable> Get Temp</button>
 <just-gage id="test1" class="someClass" min=0 max=100 value=42 title="Test 1"></just-gage>
+
