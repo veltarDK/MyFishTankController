@@ -34,7 +34,7 @@ export IP=192.168.1.13
 
 case "$1" in
   start)
-    sudo modprobe w1-gpio && sudo modprobe w1-therm && forever  --sourceDir=$ROOT_DIR server.js -l $LOG_FILE 
+    sudo modprobe w1-gpio && sudo modprobe w1-therm && $ROOT_DIR/mongod ; forever  --sourceDir=$ROOT_DIR server.js 
     ;;
   stop)
     exec forever stopall
