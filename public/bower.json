@@ -1,0 +1,28 @@
+{
+  "name": "FishTank",
+  "description": "Aquarium controller",
+  "main": "core.js",
+  "authors": [
+    "dzmitry"
+  ],
+  "license": "apache",
+  "homepage": "https://github.com/veltarDK/MyFishTankController",
+  "moduleType": [
+    "node"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-mocks": "1.4.x",
+    "angular-route": "1.4.x",
+    "bootstrap": "~3.1.1",
+    "angular-chart.js": "^0.8.8",
+    "angular-charts": "^0.2.7"
+  }
+}
