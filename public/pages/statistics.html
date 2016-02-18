@@ -1,0 +1,58 @@
+<div class="jumbotron text-center">
+    <h1>Statistics Page</h1>
+
+    <p>{{ message }}</p>
+    <div>
+
+        <!--<canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-click="onClick">-->
+        <!--</canvas>-->
+        
+
+    </div>
+</div>
+
+<div>
+    
+    
+            <div ac-chart=line ac-data="data" ac-config="config" id='chart' class='chart'></div>
+<script type="text/javascript" src="">
+    
+  var data = {
+  "series": [
+    "Sales",
+    "Income",
+    "Expense"
+  ],
+  "data": [
+    {
+      "x": "Computers",
+      "y": [
+        54,
+        0,
+        879
+      ],
+      "tooltip": "This is a tooltip"
+    }
+  ]
+}  
+
+var config = {
+  title: '',
+  tooltips: true,
+  labels: false,
+  mouseover: function() {},
+  mouseout: function() {},
+  click: function() {},
+  legend: {
+    display: true,
+    //could be 'left, right'
+    position: 'left'
+  },
+  innerRadius: 0, // applicable on pieCharts, can be a percentage like '50%'
+  lineLegend: 'lineEnd' // can be also 'traditional'
+}
+</script>
+
+
+
+</div>
