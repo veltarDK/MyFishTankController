@@ -5,7 +5,7 @@ var morgan = require('morgan'); // log requests to the console (express4)
 var bodyParser = require('body-parser'); // pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 var async = require('async');
-//var gpio = require('pi-gpio');
+var gpio = require('pi-gpio');
 var config = require('./config');
 var sensor = require('ds18x20'); // temperature sensor library
 var schedule = require('node-schedule'); // cron scheduller
@@ -134,7 +134,7 @@ function Initialize() {
     //15minutes temp rule
     var temp_15_rule = new schedule.RecurrenceRule();
     // temp_15_rule.dayOfWeek = [0, new schedule.Range(1, 6)];
-    temp_15_rule.minute = new schedule.Range(0, 59, 1);
+    temp_15_rule.minute = new schedule.Range(0, 59, 15);
     schedule.scheduleJob(temp_15_rule, function() {
         ReadTemp_dump2();
         ReadTemp_dump();
