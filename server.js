@@ -162,7 +162,7 @@ function Initialize() {
 
     // Retrieve
     // var MongoClient = require('mongodb').MongoClient;
-    mongoose.connect(process.env.IP);
+    mongoose.connect('mongodb://'+process.env.IP);
 
 
     var db = mongoose.connection;
