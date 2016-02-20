@@ -27,6 +27,16 @@
 <script type='text/javascript' src='../bower_components/d3/d3.min.js'></script> 
 <script type='text/javascript' src='./bower_components/angular-charts/dist/angular-charts.min.js'></script>
 
+
+<!---->
+<script src="https://code.highcharts.com/stock/highstock.src.js"></script>
+<script src="https://code.highcharts.com/adapters/standalone-framework.js"></script>
+<script src="bower_components/highcharts/highcharts.src.js"></script>
+<script src="bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
+<!--<script src="bower_components/highcharts/adapters/standalone-frameworks.js"></script>-->
+<script src="bower_components/highcharts/highcharts-more.js"></script>
+
+<!---->
 </head>
 
 <!-- define angular controller -->
@@ -46,6 +56,7 @@
         <li><a href="#about"><i class="fa fa-info"></i> About</a></li>
       </ul>
     </div>
+    
   </nav>
 
   <div id="main">
@@ -55,7 +66,13 @@
     <div ng-view></div>
     
   </div>
-  
+
+
+<!--<highchart id="chart1" config="chartConfig"></highchart>-->
+  <div ng-controller="statisticsController">
+       
+    </div>
+    
   <footer class="text-center">
     <p>Designed by Dzmitry Kushchanka</a></p>
   

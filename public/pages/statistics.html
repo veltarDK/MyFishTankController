@@ -1,58 +1,52 @@
-<div class="jumbotron text-center">
-    <h1>Statistics Page</h1>
+<!--<div class="jumbotron text-center">-->
+<!--    <h1>Statistics Page</h1>-->
 
-    <p>{{ message }}</p>
-    <div>
+<!--    <p>{{ message }}</p>-->
+<!--    <div>-->
 
-        <!--<canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-click="onClick">-->
-        <!--</canvas>-->
-        
+<!--<canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-click="onClick">-->
+<!--</canvas>-->
 
+
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div>-->
+
+
+<!--<highchart id="chart1" config="chartConfig"></highchart>-->
+<div ng-controller="statisticsController">
+  <!--<div class="span12">-->
+  <!--    <input ng-model="chartConfig.title.text">-->
+  <!--    <button ng-click="addSeries()">Add Series</button>-->
+  <!--    <button ng-click="addPoints()">Add Points to Random Series</button>-->
+  <!--    <button ng-click="removeRandomSeries()">Remove Random Series</button>-->
+  <!--    <button ng-click="swapChartType()">Line/Bar</button>-->
+  <!--    <button ng-click="toggleLoading()">Loading?</button>-->
+  <!--</div>-->
+  <div class="panel panel-default">
+    <div class="panel-heading">Current Temperature</div>
+    <div class="panel-body">
+
+      <div class "row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-4">
+          <highchart id="chart_gauge_1" config="chartConfig_gauge" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></highchart>
+        </div>
+        <div class="col-sm-6">
+              <highchart id="chart_gauge_2" config="chartConfig_solid" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto" class="span10"></highchart>
+        </div>
+        <div class="col-sm-1"></div>
+      </div>
     </div>
-</div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Temperature statistics</div>
+    <div class="panel-body">
 
-<div>
-    
-    
-            <div ac-chart=line ac-data="data" ac-config="config" id='chart' class='chart'></div>
-<script type="text/javascript" src="">
-    
-  var data = {
-  "series": [
-    "Sales",
-    "Income",
-    "Expense"
-  ],
-  "data": [
-    {
-      "x": "Computers",
-      "y": [
-        54,
-        0,
-        879
-      ],
-      "tooltip": "This is a tooltip"
-    }
-  ]
-}  
-
-var config = {
-  title: '',
-  tooltips: true,
-  labels: false,
-  mouseover: function() {},
-  mouseout: function() {},
-  click: function() {},
-  legend: {
-    display: true,
-    //could be 'left, right'
-    position: 'left'
-  },
-  innerRadius: 0, // applicable on pieCharts, can be a percentage like '50%'
-  lineLegend: 'lineEnd' // can be also 'traditional'
-}
-</script>
-
-
-
+      <div class="row">
+        <highchart id="chart1" config="chartConfig" class="span10"></highchart>
+      </div>
+    </div>
+  </div>
 </div>

@@ -354,3 +354,245 @@ function ReadTemp_dump2() {
         // });
     });
 }
+
+
+// var Temp_timeseries = new Schema({
+//     timestamp_month: Date,
+//     type: "Temperature measurements",
+//         values: {
+//             0: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             1: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             2: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             3:  {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             4: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             5: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             6:  {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             7:  {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             8: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             9: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             10: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             11: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             12: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             13: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             14: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             15: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             16: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             17: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             18: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             19: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             20: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             21: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             22: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             23: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             24: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             25: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             26: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             27: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             28: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             29: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             },
+//             30: {
+//                 0: Number, 1: Number, 2: Number, 3: Number, 4: Number, 5: Number,
+//                 6: Number, 7: Number, 8: Number, 9: Number, 10: Number, 11: Number,
+//                 12: Number, 13: Number, 14: Number, 15: Number, 16: Number,
+//                 17: Number, 18: Number, 19: Number, 20: Number, 21: Number,
+//                 22: Number, 23: Number
+//             }
+            
+        
+//     }
+// });
+
+function dumpTemp(id, tempValue) {
+  switch (id){
+      case 0:
+          //dump temp1
+          var tempModel = mongoose.model('Temp1_ts_'+moment().format('MM'), Temp_timeseries);
+
+          var temp1_ts =  mongoose.
+          temp1_ts.
+          break;
+      case 1:
+          //dump temp2
+          break;
+  }   
+}
