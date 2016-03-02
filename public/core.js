@@ -1,5 +1,5 @@
 //var app = angular.module('FishTankApp', [ 'ngRoute', 'ui.bootstrap']);
-var app = angular.module('FishTankApp', ['highcharts-ng', 'ngRoute', 'ui.bootstrap']);
+var app = angular.module('FishTankApp', ['highcharts-ng', 'ngRoute', 'ui.bootstrap', 'uiSwitch']);
 
 
 // var chartjs = require('chart.js');
@@ -104,6 +104,8 @@ app.controller('aboutController', function($scope) {
 
 app.controller('controlsController', function($scope) {
 	$scope.message = 'Controls. This is just a demo.';
+	$scope.LightsonOff = true;
+	//
 	// // post
 	function post(url) {
 		var request = new XMLHttpRequest();
@@ -112,15 +114,31 @@ app.controller('controlsController', function($scope) {
 		request.send({});
 	}
 
-	$scope.lightON = function() {
-		post("/api/light/day/on");
-	};
+//todo
+//sync lightOnOff variable with server
+//
+	$scope.$watch('LightsonOffonOff', function(newValue, oldValue) {
+			if (newValue == true)
+				post("/api/light/day/on");
+			else
+				post("/api/light/day/off");
+		})
+		// 
+		// 
+	$scope.$watch('BubblesOnOff', function(newValue, oldValue) {
+		if (newValue == true)
+			post("/api/bubbles/on");
+		else
+			post("/api/bubbles/off");
+	})
+	$scope.$watch('FilterOnOff', function(newValue, oldValue) {
+	if (newValue == true)
+		post("/api/filter/on");
+	else
+		post("/api/filter/off");
+	})
 
-	$scope.lightOFF = function() {
-		post("/api/light/day/off");
-	};
-
-});
+	});
 
 app.controller('setingsController', function($scope) {
 	$scope.message = 'setings bla bla .just a demo.';
@@ -128,7 +146,42 @@ app.controller('setingsController', function($scope) {
 
 app.controller('statisticsController', function($scope) {
 	$scope.message = 'Statistics!.';
+// // post
+	function post(url) {
+		var request = new XMLHttpRequest();
+		request.open('POST', url, true);
+		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+		request.send({});
+	}
+	$scope.temp_ft_1=0;
+	$scope.temp_ft_2=0;
+	// Add some life
+    $scope.RequestData = function (chart) {
+        if (!chart.renderer.forExport) {
+            setInterval(function () {
+                var point = chart.series[0].points[0],
+                    newVal,
+                    inc = Math.round((Math.random() - 0.5) * 20);
 
+                newVal = point.y + inc;
+                if (newVal < 0 || newVal > 200) {
+                    newVal = point.y - inc;
+                }
+
+                point.update(newVal);
+
+            }, 3000);
+        }
+    };
+    
+$scope.getTemp1 = function() {
+		post("/api/sensor/temp/tank2");
+
+	};
+$scope.getTemp2 = function() {
+		// post("/api/sensor/temp/tank2");
+
+	};
 	//
 	//$scope.addPoints = function () {
 	//       var seriesArray = $scope.chartConfig.series
@@ -183,23 +236,23 @@ app.controller('statisticsController', function($scope) {
 		loading: false
 	}
 
-	$scope.chart_gauge_1 = function() {
-		if (!chart_gauge_1.renderer.forExport) {
-			setInterval(function() {
-				var point = chart_gauge_1.series[0].points[0],
-					newVal,
-					inc = Math.round((Math.random() - 0.5) * 20);
+	// $scope.chart_gauge_1 = function() {
+	// 	if (!chart_gauge_1.renderer.forExport) {
+	// 		setInterval(function() {
+	// 			var point = chart_gauge_1.series[0].points[0],
+	// 				newVal,
+	// 				inc = Math.round((Math.random() - 0.5) * 20);
 
-				newVal = point.y + inc;
-				if (newVal < 0 || newVal > 200) {
-					newVal = point.y - inc;
-				}
+	// 			newVal = point.y + inc;
+	// 			if (newVal < 0 || newVal > 200) {
+	// 				newVal = point.y - inc;
+	// 			}
 
-				point.update(newVal);
+	// 			point.update(newVal);
 
-			}, 3000);
-		}
-	};
+	// 		}, 3000);
+	// 	}
+	// };
 
 	$scope.chartConfig_solid = {
 		options: {
@@ -231,7 +284,7 @@ app.controller('statisticsController', function($scope) {
 			}
 		},
 		series: [{
-			data: [16],
+			data: [$scope.temp_ft_1],
 			dataLabels: {
 				format: '<div style="text-align:center"><span style="font-size:25px;color:black">{y}</span><br/>' +
 					'<span style="font-size:12px;color:silver">km/h</span></div>'
@@ -288,8 +341,27 @@ app.controller('statisticsController', function($scope) {
 				plotBackgroundColor: null,
 				plotBackgroundImage: null,
 				plotBorderWidth: 0,
-				plotShadow: false
-			},
+				plotShadow: false,
+					events: {
+						load: function() {
+						 {
+								setInterval(function() {
+									var point = series[0].points[0],
+										newVal,
+										inc = Math.round((Math.random() - 0.5) * 10);
+
+									newVal = point.y + inc;
+									if (newVal < 0 || newVal > 40) {
+										newVal = point.y - inc;
+									}
+
+									point.update(newVal);
+
+								}, 3000);
+							}
+						}
+					}
+				},
 
 			title: {
 				text: 'Temp tank 1'
@@ -386,7 +458,24 @@ app.controller('statisticsController', function($scope) {
 					valueSuffix: ' km/h'
 				}
 			}],
-		loading: false
+
+		function(chart) {
+		if (!chart.renderer.forExport) {
+			setInterval(function() {
+				var point = chart.series[0].points[0],
+					newVal,
+					inc = Math.round((Math.random() - 0.5) * 10);
+
+				newVal = point.y + inc;
+				if (newVal < 0 || newVal > 40) {
+					newVal = point.y - inc;
+				}
+
+				point.update(newVal);
+
+			}, 3000);
+		}
+	}
 		}
 	}
 
@@ -408,6 +497,46 @@ app.controller('statisticsController', function($scope) {
 		}
 	}
 
+
+// 
+// 
+
+var chartFunction = function() {
+      // Speed
+      var chart = angular.element(document.getElementById('chart_gauge_1')).highcharts();
+      // var chart = chart_dd.highcharts();
+      var point;
+      var newVal;
+      var inc;
+
+      if (chart) {
+         point = chart.series[0].points[0];
+         inc = Math.round((Math.random() - 0.5) * 10);
+         newVal = point.y + inc;
+
+         if (newVal < 0 || newVal > 40) {
+            newVal = point.y - inc;
+         }
+         point.update(newVal);
+      }
+
+      // RPM
+      chart = angular.element('#chart_gauge_2').highcharts();
+      if (chart) {
+         point = chart.series[0].points[0];
+         inc = Math.random() - 0.5;
+         newVal = point.y + inc;
+
+         if (newVal < 0 || newVal > 5) {
+            newVal = point.y - inc;
+         }
+
+         point.update(newVal);
+      }
+   };   
+   
+   // Bring life to the dials
+   //setInterval(chartFunction, 2000);
 });
 //
 ///

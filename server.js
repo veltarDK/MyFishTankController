@@ -147,7 +147,7 @@ function Initialize() {
     //
     //
     var isLoaded = sensor.isDriverLoaded();
-    logger.info("Temperarure sensor library loaded: " + isLoaded);
+    logger.info("Temperature sensor library loaded: " + isLoaded);
 
     if (isLoaded) {
         var listOfDeviceIds = sensor.list();
@@ -237,14 +237,17 @@ function CloseP1(callback) {
 
 
 
-
+app.get("/api/light/day/on", function(req, res){
+    logger.info("GET /api/light/day/on");
+});
 
 
 
 app.post("/api/light/day/on", function(req, res) {
+    logger.info("POST /api/light/day/on");
     async.series(
         [
-            OpenP1
+            // OpenP1
         ],
         function(err, results) {
             logger.info(err + " All functions finished.");
@@ -254,9 +257,10 @@ app.post("/api/light/day/on", function(req, res) {
 
 
 app.post("/api/light/day/off", function(req, res) {
+    logger.info("/api/light/day/off");
     async.series(
         [
-            OpenP2
+            // OpenP2
         ],
         function(err, results) {
             logger.info(err + " All functions finished.");
@@ -276,6 +280,15 @@ function ReadT2(res, callback) {
     res.send(temp);
     // res = temp;
 }
+
+app.get("api/sensor/temps", function(req, res) {
+    var t1 = 23;
+    var t2 = 25;
+    logger.info("Get temps.");
+    res.status = 405;
+    res.send({t1, t2});
+    
+})
 
 app.post("/api/sensor/temp/tank2", function(req, res) {
     var temp = 666;

@@ -1,43 +1,47 @@
-<div class="jumbotron text-center">
-    <h1>Controls Page</h1>
+<!--<div class="jumbotron text-center">-->
+<!--    <h1>Controls Page</h1>-->
 
-    <p>{{ message }}</p>
+<!--    <p>{{ message }}</p>-->
+<!--</div>-->
+
+
+    
+<!--<uib-accordion-group heading="Day Lights" panel-class="panel-primary">-->
+<div class="panel panel-default">
+    <div class="panel-heading">Lights</div>
+    <div class="panel-body">
+        <p>Control lights.</p>
+
+        <form>
+            <div>
+                <switch class="green" id="LightsonOffonOff" name="LightsonOffonOff" ng-model="LightsonOffonOff" on="On" off="Off">
+                    <!--<button ng-click="lightON();">Toggle</button>-->
+            </div>
+            </switch>
+        </form>
+    </div>
 </div>
 
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" ng-model="oneAtATime">
-      Open only one at a time
-    </label>
-  </div>
-  
-<div>
-    
-      <uib-accordion close-others="oneAtATime">
-    <uib-accordion-group heading="Day Lights" panel-class="panel-primary">
-     <p>Control lights.</p>
-      <div class="btn-group" r>
-                <button class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Day Light'" ng-click="lightON();" uncheckable> Day Light</button>
-                <button class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Night'" ng-click="lightOFF();" uncheckable> Night</button>
-            </div>
-    </uib-accordion-group>
+<div class="panel panel-default">
+    <div class="panel-heading">Filtration</div>
+    <div class="panel-body">
+        <p>Filter pump.</p>
 
-    <uib-accordion-group heading="Filter pump" panel-class="panel-primary">
-      <p>Control filter pump</p>
-            <div class="btn-group" r>
-                <button class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Filter ON'" ng-click="filterON();" uncheckable> Filter ON</button>
-                <button class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Filter OFF'" ng-click="filterOFF();" uncheckable> Filter OFF</button>
+            <div>
+                <switch class="green" id="FilterOnOff" name="FilterOnOff" ng-model="FilterOnOff" on="On" off="Off"> </switch>
             </div>
-    </uib-accordion-group>
-    
-       <uib-accordion-group heading="Bubbles pump" panel-class="panel-primary">
-      <p>Control bubbles pump</p>
-            <div class="btn-group" r>
-                <button class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Bubbles ON'" ng-click="bubblesON();" uncheckable> Bubbles ON</button>
-                <button class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Buuble OFF'" ng-click="bubblesOFF();" uncheckable> Buuble OFF</button>
-            </div>
-    </uib-accordion-group>
-  </uib-accordion>
-  
+    </div>
 </div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Decoration</div>
+    <div class="panel-body">
+        <p>Bubbles pump.</p>
+
+            <div>
+                <switch class="green" id="BubblesOnOff" name="BubblesOnOff" ng-model="BubblesOnOff" on="On" off="Off"> </switch>
+            </div>
+    </div>
+</div>
+
 
