@@ -5,7 +5,7 @@ var morgan = require('morgan'); // log requests to the console (express4)
 var bodyParser = require('body-parser'); // pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 var async = require('async');
-//var gpio = require('pi-gpio');
+var gpio = require('pi-gpio');
 var config = require('./config');
 var sensor = require('ds18x20'); // temperature sensor library
 var schedule = require('node-schedule'); // cron scheduller
@@ -99,11 +99,11 @@ function Initialize() {
     if (c_hour > config.SUNRISE_HOUR && c_hour < config.SUNSET_HOUR) {
         //
         logger.info("determine day. " + moment().format("HH:mm"));
-        // OpenP1();
+         OpenP1();
     }
     else {
         logger.info("determine night. " + moment().format("HH:mm"));
-        // OpenP2();
+         OpenP2();
     }
     //
     //enqueue timers
