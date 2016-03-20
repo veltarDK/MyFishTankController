@@ -122,8 +122,8 @@ function Initialize() {
     //evening rule
     var evening_rule = new schedule.RecurrenceRule();
     evening_rule.dayOfWeek = [0, new schedule.Range(1, 6)];
-    evening_rule.hour = config.SUNRISE_HOUR;
-    evening_rule.minute = config.SUNRISE_MINUTES;
+    evening_rule.hour = config.SUNSET_HOUR;
+    evening_rule.minute = config.SUNSET_MINUTE;
     schedule.scheduleJob(evening_rule, function() {
         OpenP2();
         logger.info('Sunset! ;)');
@@ -247,7 +247,7 @@ app.post("/api/light/day/on", function(req, res) {
     logger.info("POST /api/light/day/on");
     async.series(
         [
-            // OpenP1
+             OpenP1
         ],
         function(err, results) {
             logger.info(err + " All functions finished.");
@@ -260,7 +260,7 @@ app.post("/api/light/day/off", function(req, res) {
     logger.info("/api/light/day/off");
     async.series(
         [
-            // OpenP2
+             OpenP2
         ],
         function(err, results) {
             logger.info(err + " All functions finished.");
